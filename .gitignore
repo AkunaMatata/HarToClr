@@ -268,3 +268,6 @@ packages/
 **/project.lock.json
 ui-edisonR1x/reports/
 ui-edisonR1x/.vscode/
+.vs/
+obj/
+bin/
