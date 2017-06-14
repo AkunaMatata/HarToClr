@@ -8,10 +8,10 @@ namespace HarToClr
 {
     public class ConvertManager
     {
-        public void ExportToCsv(Har har, string fileName)
+        public void ExportToCsv<T>(string fileName, IEnumerable<T> items)
         {
-            var file = new FileStream("fileName", FileMode.Create);
-            file.WriteCsv(har.Log.Entries);
+            var file = new FileStream(fileName, FileMode.Create);
+            file.WriteCsv(items);
         }
 
         public Har ConvertToHar(string fileName)
@@ -41,7 +41,7 @@ namespace HarToClr
                             BodySize = request.Get("bodySize").ToInt(0),
                             HeaderSize = request.Get("headersSize").ToInt(0),
                             HttpVersion =  request.Get("httpVersion"),
-                            Method = request.Get("Method"),
+                            Method = request.Get("method"),
                             Url = request.Get("url"),
                             PostData = request.Object("postData").ConvertTo(postData => new PostData
                             {
